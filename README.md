@@ -238,11 +238,15 @@ Work is in progress...
 ### 0.9.434(m)/Trip5/2025.06.29
 
 - BREAKING CHANGES
+  - requires a large SPIFFS partition
+    - if ESP32, use the `4MBflash.csv` as your partition file (see the text file for more)
   - might need to do full Erase Flash and Upload program and Filesystem again
   - Filesystem Image MUST be flashed again
   - many settings will be reset to defaults
   - notes were added to `config.cpp` how to handle breaking and non-breaking store updates in the future
   - future re-flashes should not lose settings after this update
+- library dependency: `bblanchon/ArduinoJson@^6.21.3`
+  - https://github.com/bblanchon/ArduinoJson
 - EEProm storage removed in favor of Preferences
   - config.store variables may still be used as before
   - no need to handle store version changes except by adding old ones to the "remove" list in `config.cpp`
