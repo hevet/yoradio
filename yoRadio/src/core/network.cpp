@@ -414,16 +414,16 @@ bool getWeather(char *wstr) {
   if (tmpe == NULL) { Serial.println("##WEATHER###: humidity not found !"); return false;}
   strlcpy(hum, tmps, tmpe - tmps + (tmpc>tmpe?1:0));
   
-  //tmps = strstr(cursor, "\"grnd_level\":");
-  //bool grnd_level_pr = (tmps != NULL);
-  //if(grnd_level_pr){
-  //  tmps += 13;
-  //  tmpe = strstr(tmps, ",\"");
-  //  if (tmpe == NULL) { Serial.println("##WEATHER###: grnd_level not found !"); return false;}
-  //  strlcpy(press, tmps, tmpe - tmps + 1);
-  //  cursor = tmpe + 2;
-  //  pressi = (float)atoi(press) / 1.333;
-  //}
+  tmps = strstr(cursor, "\"grnd_level\":");
+  bool grnd_level_pr = (tmps != NULL);
+  if(grnd_level_pr){
+    tmps += 13;
+    tmpe = strstr(tmps, ",\"");
+    if (tmpe == NULL) { Serial.println("##WEATHER###: grnd_level not found !"); return false;}
+    strlcpy(press, tmps, tmpe - tmps + 1);
+    cursor = tmpe + 2;
+    pressi = (float)atoi(press) / 1.333;
+  }
   
   tmps = strstr(cursor, "\"speed\":");
   if (tmps == NULL) { Serial.println("##WEATHER###: wind speed not found !"); return false;}
