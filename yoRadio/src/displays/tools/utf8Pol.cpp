@@ -1,7 +1,7 @@
 #include "Arduino.h"
 #include "../../core/options.h"
 #include "../dspcore.h"
-#include "utf8Pol.h"
+#include "utf8Rus.h"
 
 #ifndef DSP_LCD
 static const unsigned char iso2_upper_table[256] = {
