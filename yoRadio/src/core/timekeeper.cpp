@@ -315,13 +315,13 @@ bool _getWeather() {
         if (cursor) { sscanf(cursor, "\"humidity\":%d", &hum); }else{ Serial.println("##WEATHER###: humidity not found !"); result=false; }
         cursor = strstr(line, "\"feels_like\":");
         if (cursor) { sscanf(cursor, "\"feels_like\":%f", &tempfl); }else{ Serial.println("##WEATHER###: feels_like not found !"); result=false; }
-        cursor = strstr(line, "\"grnd_level\":");
-        if (cursor) { sscanf(cursor, "\"grnd_level\":%d", &press); }
+        //cursor = strstr(line, "\"grnd_level\":");
+        //if (cursor) { sscanf(cursor, "\"grnd_level\":%d", &press); }
         cursor = strstr(line, "\"speed\":");
         if (cursor) { sscanf(cursor, "\"speed\":%f", &wind_speed); }else{ Serial.println("##WEATHER###: wind speed not found !"); result=false; }
         cursor = strstr(line, "\"deg\":");
         if (cursor) { sscanf(cursor, "\"deg\":%d", &wind_deg); }else{ Serial.println("##WEATHER###: wind deg not found !"); result=false; }
-        press = press / 1.333;
+        //press = press / 1.333;
 
         if(!result) return;
 
