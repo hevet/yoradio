@@ -239,7 +239,8 @@ bool Config::prepareForPlaying(uint16_t stationId){
   }
   
   if(!loadStation(stationId)) return false;
-  setTitle(getMode()==PM_WEB?LANG::const_PlConnect:"[next track]");
+  //setTitle(getMode()==PM_WEB?LANG::const_PlConnect:"[next track]");
+  setTitle(getMode() == PM_WEB ? (config.station.name[0] ? config.station.name : LANG::const_PlConnect) : "[next track]");
   station.bitrate=0;
   setBitrateFormat(BF_UNKNOWN);
   display.putRequest(DBITRATE);
