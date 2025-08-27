@@ -848,13 +848,20 @@ void BitrateWidget::_charSize(uint8_t textsize, uint8_t& width, uint16_t& height
 
 void BitrateWidget::_draw(){
   _clear();
-  if(!_active || _format == BF_UNKNOWN || _bitrate==0) return;
+  //if(!_active || _format == BF_UNKNOWN || _bitrate==0) return;
+  if(!_active || _format == BF_UNKNOWN) return;
   dsp.drawRect(_config.left, _config.top, _dimension, _dimension, _fgcolor);
   dsp.fillRect(_config.left, _config.top + _dimension/2, _dimension, _dimension/2, _fgcolor);
   dsp.setFont();
   dsp.setTextSize(_config.textsize);
   dsp.setTextColor(_fgcolor, _bgcolor);
-  snprintf(_buf, 6, "%d", _bitrate);
+  // Jeśli bitrate == 0, wyświetl "-"
+  if (_bitrate == 0) {
+    snprintf(_buf, sizeof(_buf), "-");
+  } else {
+    snprintf(_buf, sizeof(_buf), "%d", _bitrate);
+  }
+  //snprintf(_buf, 6, "%d", _bitrate);
   dsp.setCursor(_config.left + _dimension/2 - _charWidth*strlen(_buf)/2 + 1, _config.top + _dimension/4 - _textheight/2+1);
   dsp.print(_buf);
   dsp.setTextColor(_bgcolor, _fgcolor);
